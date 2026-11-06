@@ -1,32 +1,27 @@
 ---
 import { APP_LOGIN_URL } from '../consts';
 
-interface Props {
-  /** Href of the current page, e.g. "about.html", used for aria-current. */
-  current?: string;
-}
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => href.startsWith('/') && (path === href || path.startsWith(`${href}/`));
 
-const { current } = Astro.props;
-
-// Hrefs stay on the legacy .html paths until each page is converted; they
-// become clean URLs page by page during the migration.
+// Guides still points at the legacy page; it moves to /guides in phase 3.
 const navLinks = [
-  { href: 'how-it-works.html', label: 'How it works' },
-  { href: 'demo.html', label: 'Demo' },
-  { href: 'pricing.html', label: 'Pricing' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/demo', label: 'Demo' },
+  { href: '/pricing', label: 'Pricing' },
   { href: 'guides/index.html', label: 'Guides' },
-  { href: 'about.html', label: 'About' },
+  { href: '/about', label: 'About' },
 ];
 
 const menuLinks = [
-  { href: 'how-it-works.html', label: 'How it works' },
-  { href: 'demo.html', label: '60-second demo' },
-  { href: 'pricing.html', label: 'Pricing' },
-  { href: 'your-data.html', label: 'Your data' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/demo', label: '60-second demo' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/your-data', label: 'Your data' },
   { href: 'guides/index.html', label: 'Guides' },
-  { href: 'cashflow-index.html', label: 'Cashflow Index' },
-  { href: 'glossary.html', label: 'Glossary' },
-  { href: 'about.html', label: 'About us' },
+  { href: '/cashflow-index', label: 'Cashflow Index' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/about', label: 'About us' },
 ];
 ---
 
@@ -38,7 +33,7 @@ const menuLinks = [
     <nav class="nav" aria-label="Main">
       {
         navLinks.map((link) => (
-          <a href={link.href} aria-current={current === link.href ? 'page' : undefined}>
+          <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
             {link.label}
           </a>
         ))

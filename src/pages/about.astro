@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const jsonLd: never[] = [];
+---
+
+<BaseLayout
+  title="About Lucid Cashflow"
+  description="Lucid was built by people who spent their careers on the lender’s side of the table. Why we built it, who we are, and the company behind it."
+  jsonLd={jsonLd}
+>
+<section class="page-hero"><div class="wrap narrow">
+<span class="eyebrow">About us</span>
+<h1>Built by people who’ve sat on the lender’s side of the table.</h1>
+</div></section>
+<section style="padding-top:32px"><div class="wrap narrow article">
+<h2>Why we built Lucid</h2>
+<p>We’ve spent our careers inside banks and lenders: building the credit-risk models they use to decide who gets funded, and the collections and insolvency strategies they use when things go wrong.</p>
+<p>The pattern was always the same. The problem was visible weeks earlier, in the business’s own numbers, and nobody was looking. By the time the owner noticed, the cheap options had gone, payments were being missed, and any application was made in a hurry, from weakness.</p>
+<p>Accounting software is very good at recording what has happened. Very few small businesses have a finance director to tell them what’s coming. So we built Lucid to do three things: show your cash 13 weeks ahead, spot the issue early, and give you time to deal with it. Free fixes first. Funding only when it’s genuinely the answer, and then applied for calmly, in good order.</p>
+<p>We can’t promise any business will be funded. We can give every business the best chance.</p>
+<h2>The founders</h2>
+<div class="grid-2">
+<div class="card"><h3>Aidan Halliday</h3><p class="muted">Co-founder, commercial</p><p>Nearly a decade at credit-risk consultancy 4most, winning more than 20 IFRS 9 programmes across major UK banks and helping grow the firm to 300 people. Before that, collections, debt sale and insolvency strategy for lenders including Barclays, Capital One and Santander, at TDX (later part of Equifax) and TIC.</p></div>
+<div class="card"><h3>Mark Somers</h3><p class="muted">Co-founder and CTO</p><p>Data science and large-scale systems. Mark built the Lucid platform, its forecasting engine and its Xero, Companies House and HMRC integrations. <span class="placeholder">[Mark to confirm bio]</span></p></div>
+</div>
+<h2>The company behind Lucid</h2>
+<p>Lucid Cashflow is built and run by Lending Logic Ltd. Lending Logic also provides the same forecasting platform to lenders, brokers and investors, who offer it to their own customers under their own brand. <a href="https://lendinglogic.co.uk/">Visit Lending Logic</a>.</p>
+<p>Lending Logic Ltd is registered in England and Wales, company number 17238785. Registered office: <span class="placeholder">[registered office address]</span>. Contact: hello@lucidcashflow.co.uk.</p>
+</div></section>
+<CtaBand title="See your next 13 weeks in minutes." text="Free to start. Read-only connection to Xero. No card needed." />
+</BaseLayout>

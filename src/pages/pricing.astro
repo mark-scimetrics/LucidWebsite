@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { APP_LOGIN_URL } from '../consts';
+
+const faqs = [
+  {
+    "q": "Is the free plan really free?",
+    "a": "Yes. The 13-week forecast and the weekly verdict are free for as long as you use them. We don’t ask for a card."
+  },
+  {
+    "q": "Does Lucid earn money from lenders?",
+    "a": "Sometimes. If you choose to apply for funding through Lucid and the lender funds you, the lender may pay us a fee. We tell you before you apply, and we earn the same whichever lender you choose."
+  },
+  {
+    "q": "Can I share Lucid with my accountant?",
+    "a": "Yes. On Lucid Plus you can invite your accountant to see your forecast and verdict, so their advice starts from the same numbers."
+  },
+  {
+    "q": "Can I cancel?",
+    "a": "Yes, at any time. You keep the free forecast, and you can disconnect Xero and ask us to delete your data whenever you like."
+  }
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Lucid Pricing · Lucid Cashflow"
+  description="Start free with a 13-week cashflow forecast and weekly verdict. Upgrade to Lucid Plus for daily alerts, scenarios and a lender-ready pack."
+  jsonLd={jsonLd}
+>
+<section class="page-hero"><div class="wrap">
+<span class="eyebrow">Pricing</span>
+<h1>Free to start. Pay only when it earns its keep.</h1>
+<p class="lede">The forecast is free. Upgrade when you want Lucid watching every day.</p>
+</div></section>
+<section style="padding-top:40px"><div class="wrap grid-2">
+<div class="card"><span class="eyebrow">Free</span><h3 style="font-size:2rem">£0</h3><p>For every UK limited company on Xero.</p>
+<ul class="ticks"><li>13-week cashflow forecast</li><li>Weekly verdict by email</li><li>Payroll Safety Light</li><li>Ways through, cheapest first</li></ul>
+<a class="btn btn-primary" href={APP_LOGIN_URL}>Build your forecast free</a></div>
+<div class="card" style="border-color:var(--green)"><span class="eyebrow">Lucid Plus</span><h3 style="font-size:2rem"><span class="placeholder">[price TBC]</span></h3><p>For owners who want Lucid on watch every day.</p>
+<ul class="ticks"><li>Everything in Free</li><li>Daily verdict and instant alerts</li><li>Scenarios by chat: “what if…?”</li><li>Lender-ready pack when you need it</li><li>Share with your accountant</li></ul>
+<a class="btn btn-ghost" href="/#early">Join early access</a></div>
+</div>
+<div class="wrap" style="margin-top:24px"><p class="muted" style="font-size:.95rem">Lender, broker or investor? Our company, Lending Logic, provides the same platform to partners under their own brand. <a href="https://lendinglogic.co.uk/">Visit Lending Logic →</a></p></div>
+</section>
+<section class="band"><div class="wrap grid-2" style="align-items:start">
+<div class="section-head" style="margin:0"><span class="eyebrow">Questions</span><h2>Straight answers on cost</h2></div>
+<Faq items={faqs} />
+</div></section>
+<CtaBand title="See your next 13 weeks in minutes." text="Free to start. Read-only connection to Xero. No card needed." />
+</BaseLayout>

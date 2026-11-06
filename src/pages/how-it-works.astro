@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { APP_LOGIN_URL } from '../consts';
+
+const faqs = [
+  {
+    "q": "What does Lucid read from Xero?",
+    "a": "Invoices, bills, bank transactions, contacts, payroll journals and your chart of accounts, with read-only access. It cannot create, edit or delete anything in Xero."
+  },
+  {
+    "q": "What are the five questions?",
+    "a": "Short multiple-choice questions about things your books can’t tell us, such as whether you expect a big one-off payment, how seasonal your sales are, or whether you’re about to hire. You can change any answer later by chat."
+  },
+  {
+    "q": "How accurate is the forecast?",
+    "a": "Every week Lucid compares its forecast with what actually cleared your bank and adjusts. Accuracy improves the longer you’re connected. You can always see the assumptions behind any number."
+  },
+  {
+    "q": "How long does it take?",
+    "a": "Most businesses see their first forecast within a few minutes of connecting. Larger ledgers can take a little longer the first time."
+  }
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="How Lucid Works · Lucid Cashflow"
+  description="Connect Xero, answer five plain questions, and get a 13-week cashflow forecast in minutes, with a daily verdict and ranked ways through any squeeze."
+  jsonLd={jsonLd}
+>
+<section class="page-hero"><div class="wrap">
+<span class="eyebrow">How it works</span>
+<h1>From Xero to your next 13 weeks in minutes.</h1>
+<p class="lede">No spreadsheets, no assumptions to maintain, no finance degree needed. Lucid does the forecasting and tells you what it means.</p>
+<div class="actions"><a class="btn btn-primary" href={APP_LOGIN_URL}>Build your forecast free</a><a class="btn btn-ghost" href="/demo">See a 60-second demo</a></div>
+</div></section>
+
+<section><div class="wrap" style="display:grid;gap:20px">
+<div class="card"><span class="step-num">Step 1 · Connect</span><h3>Connect Xero with read-only access</h3><p>Two clicks through Xero’s own sign-in. Lucid reads your invoices, bills, bank transactions and payroll. It can’t change your books or move money, and you can disconnect at any time.</p></div>
+<div class="card"><span class="step-num">Step 2 · Five questions</span><h3>Tell Lucid what your books can’t</h3><p>Five plain multiple-choice questions cover the things a ledger doesn’t know: a big contract about to start, a seasonal dip, a planned hire. Change any answer later just by typing it in chat.</p></div>
+<div class="card"><span class="step-num">Step 3 · Forecast</span><h3>A 13-week forecast you can check</h3><p>Lucid’s AI writes the forecast as code, and the code calculates every number from your data. It learns when each customer really pays, not just when invoices fall due, and places VAT, PAYE and Corporation Tax on their real dates. Every figure can be traced back to where it came from.</p></div>
+<div class="card"><span class="step-num">Step 4 · Daily verdict</span><h3>One answer every morning</h3><p>“Nothing to do, you’re fine” on most days. “Act this week” when something material changes, with the reason and the amount. The Payroll Safety Light shows at a glance whether the next payroll is covered.</p></div>
+<div class="card"><span class="step-num">Step 5 · Ways through</span><h3>The cheapest fix comes first</h3><ul class="ticks"><li>Move a payment: re-time a supplier run or agree a date with HMRC.</li><li>Chase invoices: who owes what, and who to call first.</li><li>Fund it: only if needed, an impartial panel of lenders and a lender-ready pack, sent only with your permission.</li></ul></div>
+</div></section>
+
+<section class="band"><div class="wrap grid-2" style="align-items:start">
+<div class="section-head" style="margin:0"><span class="eyebrow">You stay in control</span><h2>Your business, your assumptions.</h2><p class="lede">Lucid advises; you decide. Ask “what if we win the Henderson contract?” or “what if we hire in March?” and see the 13 weeks change in seconds.</p></div>
+<Faq items={faqs} />
+</div></section>
+<CtaBand title="See your next 13 weeks in minutes." text="Free to start. Read-only connection to Xero. No card needed." />
+</BaseLayout>

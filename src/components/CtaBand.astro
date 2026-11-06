@@ -1,0 +1,28 @@
+---
+import { APP_LOGIN_URL } from '../consts';
+
+interface Props {
+  title: string;
+  text: string;
+  /** Secondary button; defaults to the demo link. */
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  title,
+  text,
+  secondaryHref = '/demo',
+  secondaryLabel = 'See a 60-second demo',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="wrap">
+    <div style="display:grid;gap:10px"><h2>{title}</h2><p class="muted">{text}</p></div>
+    <div class="actions">
+      <a class="btn btn-primary" href={APP_LOGIN_URL}>Build your forecast free</a>
+      <a class="btn btn-ghost" href={secondaryHref}>{secondaryLabel}</a>
+    </div>
+  </div>
+</section>

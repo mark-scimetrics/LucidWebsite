@@ -15,18 +15,17 @@ interface Props {
   ogType?: string;
   /** Structured data objects, rendered as application/ld+json scripts. */
   jsonLd?: unknown[];
-  /** Href of the current page for header aria-current, e.g. "about.html". */
-  current?: string;
 }
+
+const canonicalPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/+$/, '');
 
 const {
   title,
   description,
-  canonical = new URL(Astro.url.pathname, SITE_URL).href,
+  canonical = new URL(canonicalPath, SITE_URL).href,
   ogImage = `${SITE_URL}/assets/logo/lucid-cashflow-primary-1200.png`,
   ogType = 'website',
   jsonLd = [],
-  current,
 } = Astro.props;
 ---
 
@@ -64,7 +63,7 @@ const {
     }
   </head>
   <body>
-    <SiteHeader current={current} />
+    <SiteHeader />
     <main id="main">
       <slot />
     </main>

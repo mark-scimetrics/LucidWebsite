@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import terms from '../data/glossary';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "name": "Lucid Cashflow glossary",
+    "hasDefinedTerm": terms.map((term) => ({
+      "@type": "DefinedTerm",
+      "name": term.term,
+      "description": term.definition,
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Cashflow Glossary · Lucid Cashflow"
+  description="Plain-English definitions of cashflow terms for UK small business owners: runway, 13-week forecast, debtor days, PAYE, VAT quarters, Time to Pay and more."
+  jsonLd={jsonLd}
+>
+<section class="page-hero"><div class="wrap narrow">
+<span class="eyebrow">Glossary</span>
+<h1>Cashflow, in plain English.</h1>
+<p class="lede">The terms you’ll meet in Lucid and in our guides, explained in a sentence or two.</p>
+</div></section>
+<section style="padding-top:32px"><div class="wrap narrow"><dl class="gloss">{
+      terms.map((term) => (
+        <div id={term.id}>
+          <dt>{term.term}</dt>
+          <dd>{term.definition}</dd>
+        </div>
+      ))
+    }</dl></div></section><CtaBand title="See your next 13 weeks in minutes." text="Free to start. Read-only connection to Xero. No card needed." /></BaseLayout>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const jsonLd: never[] = [];
+---
+
+<BaseLayout
+  title="UK SME Cashflow Index · Lucid Cashflow"
+  description="A quarterly view of cash health across UK small businesses, by sector, built from anonymised live accounting data. First edition in 2027."
+  jsonLd={jsonLd}
+>
+<section class="page-hero"><div class="wrap narrow">
+<span class="eyebrow">UK SME Cashflow Index</span>
+<h1>How UK small businesses’ cash is really doing.</h1>
+<p class="lede">Filed accounts are months old by the time anyone reads them. The Cashflow Index will show cash health across UK small businesses each quarter, by sector, from live accounting data.</p>
+</div></section>
+<section style="padding-top:32px"><div class="wrap grid-3">
+<div class="card"><h3>What it will measure</h3><p>Cash runway, how late customers pay, and how often tax and payroll land in a cash dip, by sector and business size.</p></div>
+<div class="card"><h3>How it’s built</h3><p>From anonymised, aggregated data across connected businesses. No individual business can ever be identified.</p></div>
+<div class="card"><h3>When</h3><p>The first edition is planned for 2027, once there is enough data to be meaningful. Sign up to receive it first.</p></div>
+</div></section>
+<section class="cta-band"><div class="wrap">
+<div style="display:grid;gap:10px"><h2>Get the first edition.</h2><p class="muted">One email a quarter. No spam.</p></div>
+<div style="display:grid;gap:10px">
+<form class="signup" aria-label="Early access"><label for="email-subscribe" class="sr" style="position:absolute;left:-9999px">Work email</label>
+<input id="email-subscribe" type="email" required placeholder="you@yourbusiness.co.uk" autocomplete="email">
+<button class="btn btn-primary" type="submit">Subscribe</button></form>
+<p class="form-done" hidden>Thanks. You’re on the list, and we’ll be in touch soon.</p>
+<p class="form-note">For journalists, lenders, accountants and owners.</p></div>
+</div></section>
+</BaseLayout>
