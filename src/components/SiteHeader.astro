@@ -4,12 +4,11 @@ import { APP_LOGIN_URL } from '../consts';
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isActive = (href: string) => href.startsWith('/') && (path === href || path.startsWith(`${href}/`));
 
-// Guides still points at the legacy page; it moves to /guides in phase 3.
 const navLinks = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/demo', label: 'Demo' },
   { href: '/pricing', label: 'Pricing' },
-  { href: 'guides/index.html', label: 'Guides' },
+  { href: '/guides', label: 'Guides' },
   { href: '/about', label: 'About' },
 ];
 
@@ -18,7 +17,7 @@ const menuLinks = [
   { href: '/demo', label: '60-second demo' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/your-data', label: 'Your data' },
-  { href: 'guides/index.html', label: 'Guides' },
+  { href: '/guides', label: 'Guides' },
   { href: '/cashflow-index', label: 'Cashflow Index' },
   { href: '/glossary', label: 'Glossary' },
   { href: '/about', label: 'About us' },

@@ -17,10 +17,9 @@ Marketing site for Lucid Cashflow (lucidcashflow.co.uk). Astro, static output, d
 - `src/styles/brand.css` — brand tokens (colours, fonts, shape)
 - `src/styles/site.css` — layout and component styles
 - `src/consts.ts` — site URL, app URL, shared links
+- `src/content/guides/` — guide articles as MDX, with frontmatter for the answer
+  box, FAQs and related links (`src/content.config.ts` defines the schema)
 - `public/` — favicons, logos, demo video
-- `public/*.html`, `public/guides/` — legacy pages awaiting conversion, served at their old `.html`
-  URLs while the migration is in progress. Each is deleted from `public/` as its Astro page lands;
-  the 301 redirects in `netlify.toml` (shadowed while a file exists) then take over.
 
 ## Deploy
 

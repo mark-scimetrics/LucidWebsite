@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const guides = (await getCollection('guides')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Cashflow Guides · Lucid Cashflow"
+  description="Practical, plain-English guides to cashflow for UK small business owners, written by former bank credit-risk specialists."
+>
+  <section class="page-hero">
+    <div class="wrap narrow">
+      <span class="eyebrow">Guides</span>
+      <h1>Cashflow, explained.</h1>
+      <p class="lede">
+        Practical guides for UK business owners, written by people who’ve built the credit models
+        banks use. No jargon, no sales pitch.
+      </p>
+    </div>
+  </section>
+  <section style="padding-top:32px">
+    <div class="wrap narrow guide-list">
+      {
+        guides.map((guide) => (
+          <a class="guide-card" href={`/guides/${guide.id}`}>
+            <span class="tag">{guide.data.tag}</span>
+            <h3>{guide.data.title}</h3>
+            <p>{guide.data.blurb}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+  <CtaBand
+    title="See your next 13 weeks in minutes."
+    text="Free to start. Read-only connection to Xero. No card needed."
+  />
+</BaseLayout>

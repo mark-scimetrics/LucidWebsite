@@ -1,0 +1,82 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { SITE_URL } from '../consts';
+
+interface Props {
+  entry: CollectionEntry<'guides'>;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const allGuides = await getCollection('guides');
+const related = data.related
+  .map((slug) => allGuides.find((guide) => guide.id === slug))
+  .filter((guide): guide is CollectionEntry<'guides'> => Boolean(guide));
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.title,
+    description: data.description,
+    author: {
+      '@type': 'Person',
+      name: 'Aidan Halliday',
+      jobTitle: 'Co-founder, Lending Logic (maker of Lucid Cashflow)',
+      description: 'Former credit-risk consultant; delivered 20+ IFRS 9 programmes for major UK banks.',
+    },
+    datePublished: data.published,
+    dateModified: data.published,
+    publisher: { '@type': 'Organization', name: 'Lucid Cashflow', url: `${SITE_URL}/` },
+    mainEntityOfPage: `${SITE_URL}/guides/${entry.id}`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: data.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  },
+];
+---
+
+<BaseLayout title={data.metaTitle} description={data.description} jsonLd={jsonLd}>
+  <section class="page-hero" style="padding-bottom:0">
+    <div class="wrap narrow" style="display:grid;gap:18px">
+      <a href="/guides" class="eyebrow" style="text-decoration:none">← Guides</a>
+      <h1 style="font-size:clamp(2.1rem,4.6vw,3.2rem)">{data.title}</h1>
+      <div class="byline"><span>{data.authorByline}</span><span>{data.updatedLabel}</span></div>
+    </div>
+  </section>
+  <section style="padding-top:32px">
+    <div class="wrap narrow article">
+      <div class="answer">
+        <span class="eyebrow">The short answer</span>
+        <p>{data.shortAnswer}</p>
+      </div>
+      <slot />
+      <h2>Common questions</h2>
+      <Faq items={data.faqs} />
+      <h2>Keep reading</h2>
+      <div class="guide-list">
+        {
+          related.map((guide) => (
+            <a class="guide-card" href={`/guides/${guide.id}`}>
+              <h3>{guide.data.title}</h3>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <CtaBand
+    title="See your next 13 weeks in minutes."
+    text="Free to start. Read-only connection to Xero. No card needed."
+  />
+</BaseLayout>
