@@ -1,0 +1,60 @@
+---
+import { APP_LOGIN_URL } from '../consts';
+
+interface Props {
+  /** Href of the current page, e.g. "about.html", used for aria-current. */
+  current?: string;
+}
+
+const { current } = Astro.props;
+
+// Hrefs stay on the legacy .html paths until each page is converted; they
+// become clean URLs page by page during the migration.
+const navLinks = [
+  { href: 'how-it-works.html', label: 'How it works' },
+  { href: 'demo.html', label: 'Demo' },
+  { href: 'pricing.html', label: 'Pricing' },
+  { href: 'guides/index.html', label: 'Guides' },
+  { href: 'about.html', label: 'About' },
+];
+
+const menuLinks = [
+  { href: 'how-it-works.html', label: 'How it works' },
+  { href: 'demo.html', label: '60-second demo' },
+  { href: 'pricing.html', label: 'Pricing' },
+  { href: 'your-data.html', label: 'Your data' },
+  { href: 'guides/index.html', label: 'Guides' },
+  { href: 'cashflow-index.html', label: 'Cashflow Index' },
+  { href: 'glossary.html', label: 'Glossary' },
+  { href: 'about.html', label: 'About us' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Lucid Cashflow home"
+      ><span class="wm">Lucid<span class="dot">.</span></span><span class="wm-sub">CASHFLOW</span></a
+    >
+    <nav class="nav" aria-label="Main">
+      {
+        navLinks.map((link) => (
+          <a href={link.href} aria-current={current === link.href ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+      <a class="btn btn-primary btn-sm" href={APP_LOGIN_URL}>Build your forecast free</a>
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile">
+        {
+          menuLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+        <a class="btn btn-primary btn-sm" href={APP_LOGIN_URL}>Build your forecast free</a>
+      </nav>
+    </details>
+  </div>
+</header>

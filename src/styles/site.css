@@ -1,30 +1,6 @@
 /* Lucid Cashflow — site styles
-   Layout: one 1120px column; sections alternate paper / white bands; verdict cards carry the product. */
-:root{
-  --paper:#FBFAF7; --surface:#FFFFFF; --band:#F3F0EA;
-  --ink:#16130F; --ink-soft:#4A443B; --ink-mute:#7A7368; --hair:#E6E1D8;
-  --green:#1F7A54; --green-strong:#17603F; --green-soft:#E6F1EA; --on-green:#FBFAF7;
-  --amber:#9A5F14; --amber-soft:#FBF0DC; --red:#A83A2C; --red-soft:#F8EAE7;
-  --display:'Fraunces', Georgia, 'Times New Roman', serif;
-  --body:'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-  --mono:'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --radius:16px; --radius-sm:10px;
-  --shadow:0 1px 2px rgba(30,25,18,.05), 0 10px 28px -14px rgba(30,25,18,.18);
-}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --paper:#15130F; --surface:#1D1A16; --band:#1A1814;
-  --ink:#F3EFE7; --ink-soft:#CFC8BB; --ink-mute:#A59E91; --hair:#2E2A24;
-  --green:#3DAF7C; --green-strong:#5BC795; --green-soft:#1B2C23; --on-green:#0F1A14;
-  --amber:#E0A453; --amber-soft:#2D2416; --red:#E07A6B; --red-soft:#2E1C19;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
-  color-scheme:dark; } }
-:root[data-theme="dark"]{
-  --paper:#15130F; --surface:#1D1A16; --band:#1A1814;
-  --ink:#F3EFE7; --ink-soft:#CFC8BB; --ink-mute:#A59E91; --hair:#2E2A24;
-  --green:#3DAF7C; --green-strong:#5BC795; --green-soft:#1B2C23; --on-green:#0F1A14;
-  --amber:#E0A453; --amber-soft:#2D2416; --red:#E07A6B; --red-soft:#2E1C19;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
-  color-scheme:dark; }
+   Layout: one 1120px column; sections alternate paper / white bands; verdict cards carry the product.
+   Brand tokens (palette, fonts, shape) live in brand.css. */
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}

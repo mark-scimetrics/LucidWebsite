@@ -1,0 +1,85 @@
+---
+import '../styles/brand.css';
+import '../styles/site.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_URL } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute canonical URL. Defaults to the current path on SITE_URL. */
+  canonical?: string;
+  /** Absolute image URL. Defaults to the primary logo. */
+  ogImage?: string;
+  ogType?: string;
+  /** Structured data objects, rendered as application/ld+json scripts. */
+  jsonLd?: unknown[];
+  /** Href of the current page for header aria-current, e.g. "about.html". */
+  current?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = new URL(Astro.url.pathname, SITE_URL).href,
+  ogImage = `${SITE_URL}/assets/logo/lucid-cashflow-primary-1200.png`,
+  ogType = 'website',
+  jsonLd = [],
+  current,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="claude:viewport-fit-sides" content="cover" />
+    <style is:inline>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/assets/logo/lucid-icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+    />
+    {
+      jsonLd.map((schema) => (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+        />
+      ))
+    }
+  </head>
+  <body>
+    <SiteHeader current={current} />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+    <script is:inline>
+      document.querySelectorAll('form.signup').forEach(function (f) {
+        f.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var done = f.parentNode.querySelector('.form-done');
+          if (done) {
+            done.hidden = false;
+          }
+          f.hidden = true;
+        });
+      });
+    </script>
+  </body>
+</html>
