@@ -1,3 +1,7 @@
+---
+import { COMPANY } from '../data/company';
+---
+
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-grid">
@@ -37,17 +41,14 @@
     </div>
     <div class="legal">
       <p>
-        Lucid Cashflow is a trading name of Lending Logic Ltd, registered in England and Wales,
-        company number 17238785. Registered office: <span class="placeholder"
-          >[registered office address]</span
-        >. ICO registration: <span class="placeholder">[ICO number]</span>.
+        Lucid Cashflow is a trading name of {COMPANY.legalName}, registered in England and Wales,
+        company number {COMPANY.companyNumber}. Registered office: {COMPANY.registeredOffice}. ICO
+        registration: {COMPANY.icoNumber}.
       </p>
       <p>
         Lucid is not a lender and does not guarantee funding. We introduce limited companies to
         commercial lenders only with your permission, and we tell you if we are paid for an
-        introduction. <span class="placeholder"
-          >[Regulatory wording to confirm with compliance adviser before launch]</span
-        >
+        introduction.
       </p>
       <p>
         © 2026 Lending Logic Ltd. Xero is a trademark of Xero Limited; Lucid is not affiliated with

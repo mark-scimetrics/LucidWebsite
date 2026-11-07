@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
+import { COMPANY } from '../data/company';
 
 const faqs = [
   {
@@ -47,7 +48,7 @@ const jsonLd = [
 <div class="card"><h3>Disconnect and delete</h3><p>Disconnect at any time from Lucid or from Xero. Ask us to delete your data and we will, apart from records we must keep by law. <span class="placeholder">[Retention period to confirm]</span></p></div>
 <div class="card"><h3>Anonymised insights</h3><p>We use anonymised, aggregated figures, never anything that identifies you or your business, to improve forecasts and publish the UK SME Cashflow Index. We explain this before you connect. <span class="placeholder">[Opt-out mechanism to confirm]</span></p></div>
 <div class="card"><h3>How it’s protected</h3><p><span class="placeholder">[Mark: hosting location, encryption in transit and at rest, access controls, AI provider and its data terms]</span></p></div>
-<div class="card"><h3>Who we are</h3><p>Lucid Cashflow is run by Lending Logic Ltd, registered with the Information Commissioner’s Office (<span class="placeholder">[ICO number]</span>). Questions to privacy@lucidcashflow.co.uk.</p></div>
+<div class="card"><h3>Who we are</h3><p>Lucid Cashflow is run by {COMPANY.legalName}, registered with the Information Commissioner’s Office ({COMPANY.icoNumber}). Questions to privacy@lucidcashflow.co.uk.</p></div>
 </div></section>
 <section class="band"><div class="wrap narrow" style="display:grid;gap:24px">
 <h2>Common questions</h2>

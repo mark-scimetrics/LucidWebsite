@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { COMPANY } from '../data/company';
 
 const jsonLd: never[] = [];
 ---
@@ -27,7 +28,7 @@ const jsonLd: never[] = [];
 </div>
 <h2>The company behind Lucid</h2>
 <p>Lucid Cashflow is built and run by Lending Logic Ltd. Lending Logic also provides the same forecasting platform to lenders, brokers and investors, who offer it to their own customers under their own brand. <a href="https://lendinglogic.co.uk/">Visit Lending Logic</a>.</p>
-<p>Lending Logic Ltd is registered in England and Wales, company number 17238785. Registered office: <span class="placeholder">[registered office address]</span>. Contact: hello@lucidcashflow.co.uk.</p>
+<p>{COMPANY.legalName} is registered in England and Wales, company number {COMPANY.companyNumber}. Registered office: {COMPANY.registeredOffice}. Contact: hello@lucidcashflow.co.uk.</p>
 </div></section>
 <CtaBand title="See your next 13 weeks in minutes." text="Free to start. Read-only connection to Xero. No card needed." />
 </BaseLayout>
