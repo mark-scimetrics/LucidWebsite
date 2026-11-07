@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<BaseLayout
+  title="Page not found · Lucid Cashflow"
+  description="That page doesn’t exist. Here are the useful places to go instead."
+  noIndex
+>
+  <section class="page-hero">
+    <div class="wrap narrow">
+      <span class="eyebrow">404</span>
+      <h1>That page isn’t here.</h1>
+      <p class="lede">The link may be old or mistyped. The useful pages are below.</p>
+    </div>
+  </section>
+  <section style="padding-top:32px">
+    <div class="wrap narrow guide-list">
+      <a class="guide-card" href="/how-it-works">
+        <h3>How Lucid works</h3>
+        <p>From Xero to a 13-week forecast in minutes.</p>
+      </a>
+      <a class="guide-card" href="/pricing">
+        <h3>Pricing</h3>
+        <p>Free to start; pay only when it earns its keep.</p>
+      </a>
+      <a class="guide-card" href="/guides">
+        <h3>Guides</h3>
+        <p>Plain-English cashflow guides for UK owners.</p>
+      </a>
+      <a class="guide-card" href="/">
+        <h3>Home</h3>
+        <p>Cashflow, sorted.</p>
+      </a>
+    </div>
+  </section>
+  <CtaBand
+    title="See your next 13 weeks in minutes."
+    text="Free to start. Read-only connection to Xero. No card needed."
+  />
+</BaseLayout>

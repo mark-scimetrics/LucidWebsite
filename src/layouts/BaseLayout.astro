@@ -15,6 +15,8 @@ interface Props {
   ogType?: string;
   /** Structured data objects, rendered as application/ld+json scripts. */
   jsonLd?: unknown[];
+  /** Keep the page out of search indexes and omit canonical/og:url (e.g. the 404). */
+  noIndex?: boolean;
 }
 
 const canonicalPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/+$/, '');
@@ -26,6 +28,7 @@ const {
   ogImage = `${SITE_URL}/assets/logo/lucid-cashflow-primary-1200.png`,
   ogType = 'website',
   jsonLd = [],
+  noIndex = false,
 } = Astro.props;
 ---
 
@@ -38,11 +41,12 @@ const {
     <style is:inline>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noIndex && <link rel="canonical" href={canonical} />}
+    {noIndex && <meta name="robots" content="noindex" />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonical} />
+    {!noIndex && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/assets/logo/lucid-icon.svg" />
