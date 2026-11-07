@@ -23,4 +23,4 @@ Marketing site for Lucid Cashflow (lucidcashflow.co.uk). Astro, static output, d
 
 ## Deploy
 
-Netlify builds `npm run build` and publishes `dist/`. Redirects and headers live in `netlify.toml`.
+Netlify builds `npm run build` and publishes `dist/`. Headers for static assets live in `netlify.toml`.
