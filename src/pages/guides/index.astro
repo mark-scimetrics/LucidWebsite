@@ -24,7 +24,7 @@ const guides = (await getCollection('guides')).sort((a, b) => a.data.order - b.d
     <div class="wrap narrow guide-list">
       {
         guides.map((guide) => (
-          <a class="guide-card" href={`/guides/${guide.id}`}>
+          <a class="guide-card" href={`/guides/${guide.id}/`}>
             <span class="tag">{guide.data.tag}</span>
             <h3>{guide.data.title}</h3>
             <p>{guide.data.blurb}</p>

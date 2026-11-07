@@ -19,12 +19,10 @@ interface Props {
   noIndex?: boolean;
 }
 
-const canonicalPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/+$/, '');
-
 const {
   title,
   description,
-  canonical = new URL(canonicalPath, SITE_URL).href,
+  canonical = new URL(Astro.url.pathname, SITE_URL).href,
   ogImage = `${SITE_URL}/assets/logo/lucid-cashflow-primary-1200.png`,
   ogType = 'website',
   jsonLd = [],

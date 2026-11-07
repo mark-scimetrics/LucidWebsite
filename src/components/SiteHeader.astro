@@ -1,26 +1,27 @@
 ---
 import { APP_LOGIN_URL } from '../consts';
 
-const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isActive = (href: string) => href.startsWith('/') && (path === href || path.startsWith(`${href}/`));
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href);
 
 const navLinks = [
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/demo', label: 'Demo' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/guides', label: 'Guides' },
-  { href: '/about', label: 'About' },
+  { href: '/how-it-works/', label: 'How it works' },
+  { href: '/demo/', label: 'Demo' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/about/', label: 'About' },
 ];
 
 const menuLinks = [
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/demo', label: '60-second demo' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/your-data', label: 'Your data' },
-  { href: '/guides', label: 'Guides' },
-  { href: '/cashflow-index', label: 'Cashflow Index' },
-  { href: '/glossary', label: 'Glossary' },
-  { href: '/about', label: 'About us' },
+  { href: '/how-it-works/', label: 'How it works' },
+  { href: '/demo/', label: '60-second demo' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/your-data/', label: 'Your data' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/cashflow-index/', label: 'Cashflow Index' },
+  { href: '/glossary/', label: 'Glossary' },
+  { href: '/about/', label: 'About us' },
 ];
 ---
 
